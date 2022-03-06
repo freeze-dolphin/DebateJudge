@@ -3,6 +3,8 @@ package io.freeze_dolphin.debate_judge;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
 import java.util.*;
@@ -16,6 +18,28 @@ public class Util {
             t = "反方";
         }
         return t;
+    }
+
+    public static void mute(MainForm form) {
+        java.util.Timer tmr = new Timer();
+        form.getBtn_mute().setEnabled(false);
+        for (Player p : Util.plrs) {
+            p.close();
+        }
+        tmr.schedule(new MTimerTask(form), 0, 2000);
+    }
+
+    @RequiredArgsConstructor
+    @Getter
+    private static class MTimerTask extends TimerTask {
+
+        private final MainForm form;
+
+        @Override
+        public void run() {
+            getForm().getBtn_mute().setEnabled(true);
+            this.cancel();
+        }
     }
 
     public static java.util.Timer startCountingDown(int sec, MainForm form) {
@@ -35,7 +59,7 @@ public class Util {
         @Override
         public void run() {
             form.getLbl_timer().setText(build_time_exp((int) sec));
-            if (sec <= 10 && (double) ((int) sec) == sec) {
+            if (sec <= 30 && (double) ((int) sec) == sec) {
                 playSound(Sound.TIDA);
                 form.getLbl_timer().setForeground(new Color(sec % 2 == 0 ? 0 : 255, 0, 0));
             }

@@ -20,20 +20,8 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
 				"y": 0
-				"width": 840
+				"width": 1200
 				"height": 155
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "lbl_status"
-				"text": "-"
-				"border": new javax.swing.border.TitledBorder( null, "状态", 4, 0, new java.awt.Font( "Dialog", 1, 20 ), sfield java.awt.Color black )
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 100, false )
-				"horizontalAlignment": 0
-			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 845
-				"y": 10
-				"width": 355
-				"height": 200
 			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
 				name: "sep"
@@ -53,7 +41,7 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 5
 				"y": 210
-				"width": 710
+				"width": 840
 				"height": 198
 			} )
 			add( new FormComponent( "javax.swing.JProgressBar" ) {
@@ -63,13 +51,13 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 7
 				"y": 162
-				"width": 836
+				"width": 1191
 				"height": 45
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_get_blammer"
 				"text": "生成先手"
-				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( null, 1, 16, false )
+				"font": &Font0 new java.awt.Font( "Dialog", 0, 28 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_get_blammer", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 200
@@ -84,15 +72,15 @@ new FormModel {
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 131072, 100, false )
 				"horizontalAlignment": 0
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"x": 715
+				"x": 845
 				"y": 210
-				"width": 485
+				"width": 355
 				"height": 198
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_stage"
 				"text": "开始"
-				"font": &SwingDerivedFont1 new com.jformdesigner.model.SwingDerivedFont( null, 0, 16, false )
+				"font": #Font0
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_stage", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -104,7 +92,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_timer"
 				"text": "计时"
-				"font": #SwingDerivedFont1
+				"font": #Font0
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_timer", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -114,39 +102,39 @@ new FormModel {
 				"y": 480
 			} )
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
-				name: "radio_think"
-				"text": "思考讨论 (3 min)"
-				"border": &EtchedBorder0 new javax.swing.border.EtchedBorder( 1, null, null )
+				name: "radio_state"
+				"text": "陈词 (3 min)"
+				"border": &EtchedBorder0 new javax.swing.border.EtchedBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray )
 				"borderPainted": true
-				"font": &SwingDerivedFont2 new com.jformdesigner.model.SwingDerivedFont( null, 0, 14, false )
+				"font": &Font1 new java.awt.Font( "Dialog", 0, 26 )
 				"enabled": false
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_think", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_state", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "radio_disable_self_unselect", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 425
 				"y": 485
-				"width": 255
+				"width": 180
 				"height": 40
 			} )
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
-				name: "radio_speak"
-				"text": "辩者发言 (5 min)"
+				name: "radio_attack"
+				"text": "攻辩 (2 min)"
 				"border": #EtchedBorder0
 				"borderPainted": true
-				"font": #SwingDerivedFont2
+				"font": #Font1
 				"enabled": false
-				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_speak", true ) )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_attack", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "radio_disable_self_unselect", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 255
+				"width": 180
 				"height": 40
-				"x": 685
+				"x": 610
 				"y": 485
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_stop_timer"
 				"text": "终止计时"
-				"font": #SwingDerivedFont0
+				"font": #Font0
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_stop_timer", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -157,23 +145,23 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "radio_test"
-				"text": "测试选项 (5 sec)"
+				"text": "测试 (15 sec)"
 				"border": #EtchedBorder0
 				"borderPainted": true
-				"font": #SwingDerivedFont2
+				"font": #Font1
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_test", true ) )
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "radio_disable_self_unselect", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-				"width": 255
+				"width": 180
 				"height": 40
-				"x": 945
-				"y": 485
+				"x": 1020
+				"y": 530
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_next_stage"
 				"text": "下一环节"
-				"font": #SwingDerivedFont1
+				"font": #Font0
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_next_stage", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -185,7 +173,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_mute"
 				"text": "禁声"
-				"font": new java.awt.Font( "Dialog", 1, 28 )
+				"font": #Font0
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_mute", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 830
@@ -193,9 +181,55 @@ new FormModel {
 				"width": 200
 				"height": 50
 			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radio_attack_conclusion"
+				"text": "攻辩小结 (1.5 min)"
+				"border": #EtchedBorder0
+				"borderPainted": true
+				"font": #Font1
+				"enabled": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_attack_conclusion", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "radio_disable_self_unselect", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 245
+				"height": 40
+				"x": 795
+				"y": 485
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radio_free_debate"
+				"text": "自由辩论 (8 min)"
+				"border": #EtchedBorder0
+				"borderPainted": true
+				"font": #Font1
+				"enabled": false
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_free_debate", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "radio_disable_self_unselect", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 220
+				"height": 40
+				"x": 425
+				"y": 530
+			} )
+			add( new FormComponent( "javax.swing.JRadioButton" ) {
+				name: "radio_conclusion_state"
+				"text": "总结陈词 (3 min)"
+				"border": #EtchedBorder0
+				"borderPainted": true
+				"font": #Font1
+				"enabled": false
+				"actionCommand": "总结陈词 (3 min)"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_final_state", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "radio_disable_self_unselect", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 220
+				"height": 40
+				"x": 650
+				"y": 530
+			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 60, 45 )
-			"size": new java.awt.Dimension( 1210, 565 )
+			"location": new java.awt.Point( 25, 55 )
+			"size": new java.awt.Dimension( 1210, 605 )
 		} )
 	}
 }

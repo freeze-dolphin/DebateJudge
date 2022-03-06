@@ -46,6 +46,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.googlecode.soundlibs/mp3spi
     implementation 'com.googlecode.soundlibs:mp3spi:1.9.5.4'
 
+    implementation 'com.formdev:flatlaf:2.0.2'
+
 }
 
 application {
