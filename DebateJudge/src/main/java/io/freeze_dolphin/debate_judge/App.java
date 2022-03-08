@@ -1,6 +1,7 @@
 package io.freeze_dolphin.debate_judge;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import io.freeze_dolphin.debate_judge.forms.MainForm;
 
 import javax.swing.*;
 

@@ -1,5 +1,6 @@
-package io.freeze_dolphin.debate_judge;
+package io.freeze_dolphin.debate_judge.utils.main_form;
 
+import io.freeze_dolphin.debate_judge.forms.MainForm;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -28,7 +29,7 @@ public class TimerUtil {
         public void updateText(TimerType type, boolean updateTimerLabel) {
             int sec = getDuration(type);
             if (updateTimerLabel) getForm().getLbl_timer().setText(Util.build_time_exp(sec));
-            getRadioBtn(type).setText(type.getText() + " (" + (int) ((double) sec / 60) + "min)");
+            // getRadioBtn(type).setText(type.getText() + " (" + (int) ((double) sec / 60) + "min)");
             getForm().setCounting_down_from(sec);
         }
 
@@ -41,8 +42,6 @@ public class TimerUtil {
                     return 120;
                 case ATTACK_CONCLUSION:
                     return 90;
-                case FREE_DEBATE:
-                    return 480;
                 case TEST:
                     return 15;
                 default:
@@ -58,8 +57,6 @@ public class TimerUtil {
                     return getForm().getRadio_attack();
                 case ATTACK_CONCLUSION:
                     return getForm().getRadio_attack_conclusion();
-                case FREE_DEBATE:
-                    return getForm().getRadio_free_debate();
                 case CONCLUSION_STATE:
                     return getForm().getRadio_conclusion_state();
                 case TEST:
@@ -92,7 +89,7 @@ public class TimerUtil {
     @RequiredArgsConstructor
     @Getter
     public enum TimerType {
-        STATE("陈词"), ATTACK("攻辩"), ATTACK_CONCLUSION("攻辩总结"), FREE_DEBATE("自由辩论"), CONCLUSION_STATE("总结陈词"), TEST("测试");
+        STATE("陈词"), ATTACK("攻辩"), ATTACK_CONCLUSION("攻辩总结"), CONCLUSION_STATE("总结陈词"), TEST("测试");
 
         private final String text;
     }

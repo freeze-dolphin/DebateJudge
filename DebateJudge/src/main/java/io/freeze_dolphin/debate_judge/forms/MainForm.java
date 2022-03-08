@@ -2,8 +2,11 @@
  * Created by JFormDesigner on Sat Mar 05 15:25:36 CST 2022
  */
 
-package io.freeze_dolphin.debate_judge;
+package io.freeze_dolphin.debate_judge.forms;
 
+import io.freeze_dolphin.debate_judge.utils.main_form.StageUtil;
+import io.freeze_dolphin.debate_judge.utils.main_form.TimerUtil;
+import io.freeze_dolphin.debate_judge.utils.main_form.Util;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Freeze_Dolphin
@@ -75,17 +77,13 @@ public class MainForm extends JFrame {
         getTmrEva().set(TimerUtil.TimerType.CONCLUSION_STATE);
     }
 
-    private void radio_free_debate(ActionEvent e) {
-        getTmrEva().set(TimerUtil.TimerType.FREE_DEBATE);
-    }
-
     private void btn_timer(ActionEvent e) {
         btn_mute.doClick();
         btn_stop_timer.setEnabled(true);
         btn_timer.setEnabled(false);
-        radio_state.setEnabled(false);
-        radio_attack.setEnabled(false);
-        radio_test.setEnabled(false);
+
+        getTmrEva().doForAllRadio((r) -> r.setEnabled(false));
+
         timer_progress.setEnabled(true);
         btn_next_stage.setEnabled(false);
         this.tmr = Util.startCountingDown(get_current_sec(), this);
@@ -154,10 +152,14 @@ public class MainForm extends JFrame {
         getBtn_timer().setEnabled(false);
     }
 
+    private void btn_free_debate(ActionEvent e) {
+        new FreeDebate().setVisible(true);
+    }
+
     @SuppressWarnings("Convert2MethodRef")
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - tajagi5778
+        // Generated using JFormDesigner Evaluation license - gagalin299
         lbl_timer = new JLabel();
         sep = new JSeparator();
         lbl_stage = new JLabel();
@@ -173,8 +175,8 @@ public class MainForm extends JFrame {
         btn_next_stage = new JButton();
         btn_mute = new JButton();
         radio_attack_conclusion = new JRadioButton();
-        radio_free_debate = new JRadioButton();
         radio_conclusion_state = new JRadioButton();
+        btn_free_debate = new JButton();
 
         //======== this ========
         setTitle("Debate Judge");
@@ -185,22 +187,22 @@ public class MainForm extends JFrame {
 
         //---- lbl_timer ----
         lbl_timer.setText("-- : --");
-        lbl_timer.setFont(new Font("Lucida Sans Unicode", Font.PLAIN, 130));
+        lbl_timer.setFont(new Font("Lucida Console", Font.PLAIN, 112));
         lbl_timer.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_timer.setBorder(new TitledBorder(null, "\u8ba1\u65f6\u5668", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
             new Font("Dialog", Font.BOLD, 20), Color.black));
         lbl_timer.setName("Timer");
         contentPane.add(lbl_timer);
-        lbl_timer.setBounds(0, 0, 1200, 155);
+        lbl_timer.setBounds(0, 0, 1235, 155);
         contentPane.add(sep);
-        sep.setBounds(0, 415, 1330, 15);
+        sep.setBounds(0, 415, 1470, 15);
 
         //---- lbl_stage ----
         lbl_stage.setText("-");
         lbl_stage.setAutoscrolls(true);
         lbl_stage.setBorder(new TitledBorder(null, "\u73af\u8282", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
             new Font("Dialog", Font.BOLD, 20), Color.black));
-        lbl_stage.setFont(lbl_stage.getFont().deriveFont(lbl_stage.getFont().getSize() + 100f));
+        lbl_stage.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 112));
         lbl_stage.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lbl_stage);
         lbl_stage.setBounds(5, 210, 840, 198);
@@ -209,46 +211,47 @@ public class MainForm extends JFrame {
         timer_progress.setMaximum(10000);
         timer_progress.setEnabled(false);
         contentPane.add(timer_progress);
-        timer_progress.setBounds(7, 162, 1191, 45);
+        timer_progress.setBounds(7, 162, 1223, 45);
 
         //---- btn_get_blammer ----
         btn_get_blammer.setText("\u751f\u6210\u5148\u624b");
-        btn_get_blammer.setFont(new Font(Font.DIALOG, Font.PLAIN, 28));
+        btn_get_blammer.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         btn_get_blammer.addActionListener(e -> btn_get_blammer(e));
         contentPane.add(btn_get_blammer);
-        btn_get_blammer.setBounds(625, 425, 200, 50);
+        btn_get_blammer.setBounds(500, 425, 240, 60);
 
         //---- lbl_blammer ----
         lbl_blammer.setText("-");
         lbl_blammer.setBorder(new TitledBorder(null, "\u5148\u624b", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
             new Font("Dialog", Font.BOLD, 20), Color.black));
-        lbl_blammer.setFont(lbl_blammer.getFont().deriveFont(lbl_blammer.getFont().getStyle() & ~Font.ITALIC, lbl_blammer.getFont().getSize() + 100f));
+        lbl_blammer.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 112));
         lbl_blammer.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lbl_blammer);
-        lbl_blammer.setBounds(845, 210, 355, 198);
+        lbl_blammer.setBounds(850, 210, 385, 198);
 
         //---- btn_stage ----
         btn_stage.setText("\u5f00\u59cb");
-        btn_stage.setFont(new Font(Font.DIALOG, Font.PLAIN, 28));
+        btn_stage.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         btn_stage.setEnabled(false);
         btn_stage.addActionListener(e -> btn_stage(e));
         contentPane.add(btn_stage);
-        btn_stage.setBounds(215, 425, 200, 50);
+        btn_stage.setBounds(10, 425, 240, 60);
 
         //---- btn_timer ----
         btn_timer.setText("\u8ba1\u65f6");
-        btn_timer.setFont(new Font(Font.DIALOG, Font.PLAIN, 28));
+        btn_timer.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         btn_timer.setEnabled(false);
         btn_timer.addActionListener(e -> btn_timer(e));
         contentPane.add(btn_timer);
-        btn_timer.setBounds(10, 480, 200, 50);
+        btn_timer.setBounds(10, 490, 240, 60);
 
         //---- radio_state ----
-        radio_state.setText("\u9648\u8bcd (3 min)");
+        radio_state.setText("\u9648\u8bcd");
         radio_state.setBorder(new EtchedBorder(Color.lightGray, Color.lightGray));
         radio_state.setBorderPainted(true);
-        radio_state.setFont(new Font(Font.DIALOG, Font.PLAIN, 26));
+        radio_state.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         radio_state.setEnabled(false);
+        radio_state.setHorizontalAlignment(SwingConstants.CENTER);
         radio_state.addActionListener(e -> radio_state(e));
         radio_state.addMouseListener(new MouseAdapter() {
             @Override
@@ -257,14 +260,15 @@ public class MainForm extends JFrame {
             }
         });
         contentPane.add(radio_state);
-        radio_state.setBounds(425, 485, 180, 40);
+        radio_state.setBounds(500, 490, 240, 60);
 
         //---- radio_attack ----
-        radio_attack.setText("\u653b\u8fa9 (2 min)");
+        radio_attack.setText("\u653b\u8fa9");
         radio_attack.setBorder(new EtchedBorder(Color.lightGray, Color.lightGray));
         radio_attack.setBorderPainted(true);
-        radio_attack.setFont(new Font(Font.DIALOG, Font.PLAIN, 26));
+        radio_attack.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         radio_attack.setEnabled(false);
+        radio_attack.setHorizontalAlignment(SwingConstants.CENTER);
         radio_attack.addActionListener(e -> radio_attack(e));
         radio_attack.addMouseListener(new MouseAdapter() {
             @Override
@@ -273,22 +277,23 @@ public class MainForm extends JFrame {
             }
         });
         contentPane.add(radio_attack);
-        radio_attack.setBounds(610, 485, 180, 40);
+        radio_attack.setBounds(745, 490, 240, 60);
 
         //---- btn_stop_timer ----
         btn_stop_timer.setText("\u7ec8\u6b62\u8ba1\u65f6");
-        btn_stop_timer.setFont(new Font(Font.DIALOG, Font.PLAIN, 28));
+        btn_stop_timer.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         btn_stop_timer.setEnabled(false);
         btn_stop_timer.addActionListener(e -> btn_stop_timer(e));
         contentPane.add(btn_stop_timer);
-        btn_stop_timer.setBounds(215, 480, 200, 50);
+        btn_stop_timer.setBounds(255, 490, 240, 60);
 
         //---- radio_test ----
-        radio_test.setText("\u6d4b\u8bd5 (15 sec)");
+        radio_test.setText("\u6d4b\u8bd5");
         radio_test.setBorder(new EtchedBorder(Color.lightGray, Color.lightGray));
         radio_test.setBorderPainted(true);
-        radio_test.setFont(new Font(Font.DIALOG, Font.PLAIN, 26));
+        radio_test.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         radio_test.setEnabled(false);
+        radio_test.setHorizontalAlignment(SwingConstants.CENTER);
         radio_test.addActionListener(e -> radio_test(e));
         radio_test.addMouseListener(new MouseAdapter() {
             @Override
@@ -297,29 +302,30 @@ public class MainForm extends JFrame {
             }
         });
         contentPane.add(radio_test);
-        radio_test.setBounds(1020, 530, 180, 40);
+        radio_test.setBounds(990, 555, 240, 60);
 
         //---- btn_next_stage ----
         btn_next_stage.setText("\u4e0b\u4e00\u73af\u8282");
-        btn_next_stage.setFont(new Font(Font.DIALOG, Font.PLAIN, 28));
+        btn_next_stage.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         btn_next_stage.setEnabled(false);
         btn_next_stage.addActionListener(e -> btn_next_stage(e));
         contentPane.add(btn_next_stage);
-        btn_next_stage.setBounds(420, 425, 200, 50);
+        btn_next_stage.setBounds(255, 425, 240, 60);
 
         //---- btn_mute ----
         btn_mute.setText("\u7981\u58f0");
-        btn_mute.setFont(new Font(Font.DIALOG, Font.PLAIN, 28));
+        btn_mute.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         btn_mute.addActionListener(e -> btn_mute(e));
         contentPane.add(btn_mute);
-        btn_mute.setBounds(830, 425, 200, 50);
+        btn_mute.setBounds(745, 425, 240, 60);
 
         //---- radio_attack_conclusion ----
-        radio_attack_conclusion.setText("\u653b\u8fa9\u5c0f\u7ed3 (1.5 min)");
+        radio_attack_conclusion.setText("\u653b\u8fa9\u5c0f\u7ed3");
         radio_attack_conclusion.setBorder(new EtchedBorder(Color.lightGray, Color.lightGray));
         radio_attack_conclusion.setBorderPainted(true);
-        radio_attack_conclusion.setFont(new Font(Font.DIALOG, Font.PLAIN, 26));
+        radio_attack_conclusion.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         radio_attack_conclusion.setEnabled(false);
+        radio_attack_conclusion.setHorizontalAlignment(SwingConstants.CENTER);
         radio_attack_conclusion.addActionListener(e -> radio_attack_conclusion(e));
         radio_attack_conclusion.addMouseListener(new MouseAdapter() {
             @Override
@@ -328,31 +334,16 @@ public class MainForm extends JFrame {
             }
         });
         contentPane.add(radio_attack_conclusion);
-        radio_attack_conclusion.setBounds(795, 485, 245, 40);
-
-        //---- radio_free_debate ----
-        radio_free_debate.setText("\u81ea\u7531\u8fa9\u8bba (8 min)");
-        radio_free_debate.setBorder(new EtchedBorder(Color.lightGray, Color.lightGray));
-        radio_free_debate.setBorderPainted(true);
-        radio_free_debate.setFont(new Font(Font.DIALOG, Font.PLAIN, 26));
-        radio_free_debate.setEnabled(false);
-        radio_free_debate.addActionListener(e -> radio_free_debate(e));
-        radio_free_debate.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                radio_disable_self_unselect(e);
-            }
-        });
-        contentPane.add(radio_free_debate);
-        radio_free_debate.setBounds(425, 530, 220, 40);
+        radio_attack_conclusion.setBounds(990, 490, 240, 60);
 
         //---- radio_conclusion_state ----
-        radio_conclusion_state.setText("\u603b\u7ed3\u9648\u8bcd (3 min)");
+        radio_conclusion_state.setText("\u603b\u7ed3\u9648\u8bcd");
         radio_conclusion_state.setBorder(new EtchedBorder(Color.lightGray, Color.lightGray));
         radio_conclusion_state.setBorderPainted(true);
-        radio_conclusion_state.setFont(new Font(Font.DIALOG, Font.PLAIN, 26));
+        radio_conclusion_state.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
         radio_conclusion_state.setEnabled(false);
         radio_conclusion_state.setActionCommand("\u603b\u7ed3\u9648\u8bcd (3 min)");
+        radio_conclusion_state.setHorizontalAlignment(SwingConstants.CENTER);
         radio_conclusion_state.addActionListener(e -> radio_final_state(e));
         radio_conclusion_state.addMouseListener(new MouseAdapter() {
             @Override
@@ -361,16 +352,24 @@ public class MainForm extends JFrame {
             }
         });
         contentPane.add(radio_conclusion_state);
-        radio_conclusion_state.setBounds(650, 530, 220, 40);
+        radio_conclusion_state.setBounds(745, 555, 240, 60);
 
-        contentPane.setPreferredSize(new Dimension(1210, 605));
+        //---- btn_free_debate ----
+        btn_free_debate.setText("\u81ea\u7531\u8fa9\u8bba");
+        btn_free_debate.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
+        btn_free_debate.setEnabled(false);
+        btn_free_debate.addActionListener(e -> btn_free_debate(e));
+        contentPane.add(btn_free_debate);
+        btn_free_debate.setBounds(500, 555, 240, 60);
+
+        contentPane.setPreferredSize(new Dimension(1240, 620));
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
     // JFormDesigner - Variables declaradion - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - tajagi5778
+    // Generated using JFormDesigner Evaluation license - gagalin299
     private JLabel lbl_timer;
     private JSeparator sep;
     private JLabel lbl_stage;
@@ -386,7 +385,7 @@ public class MainForm extends JFrame {
     private JButton btn_next_stage;
     private JButton btn_mute;
     private JRadioButton radio_attack_conclusion;
-    private JRadioButton radio_free_debate;
     private JRadioButton radio_conclusion_state;
+    private JButton btn_free_debate;
     // JFormDesigner - End of variables declaradion  //GEN-END:variables
 }

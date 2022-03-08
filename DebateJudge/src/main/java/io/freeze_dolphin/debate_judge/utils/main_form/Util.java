@@ -1,5 +1,7 @@
-package io.freeze_dolphin.debate_judge;
+package io.freeze_dolphin.debate_judge.utils.main_form;
 
+import io.freeze_dolphin.debate_judge.App;
+import io.freeze_dolphin.debate_judge.forms.MainForm;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import lombok.AllArgsConstructor;
@@ -75,6 +77,13 @@ public class Util {
             }
             this.sec -= 0.25;
         }
+    }
+
+    public static int get_time_from_time_exp(String exp) {
+        String[] spd = exp.split(" : ");
+        String left = spd[0];
+        String right = spd[1];
+        return Integer.parseInt(left) * 60 + Integer.parseInt(right);
     }
 
     public static String build_time_exp(int sec) {

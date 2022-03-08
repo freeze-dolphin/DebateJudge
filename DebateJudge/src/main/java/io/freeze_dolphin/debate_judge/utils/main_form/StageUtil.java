@@ -1,5 +1,6 @@
-package io.freeze_dolphin.debate_judge;
+package io.freeze_dolphin.debate_judge.utils.main_form;
 
+import io.freeze_dolphin.debate_judge.forms.MainForm;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -36,7 +37,6 @@ public class StageUtil {
                 case FIRST:
                     autoSetEnable(new JComponent[]{
                             getForm().getBtn_next_stage(),
-                            getForm().getRadio_attack(),
                             getForm().getRadio_state(),
                             getForm().getRadio_test()
                     }, true);
@@ -60,14 +60,14 @@ public class StageUtil {
                     getForm().getRadio_attack().setEnabled(true);
                     break;
                 case FREE:
-                    getForm().getRadio_free_debate().setEnabled(true);
                     autoSetEnable(new JComponent[]{
                             getForm().getRadio_attack(),
                             getForm().getRadio_attack_conclusion()
                     }, false);
+                    getForm().getBtn_free_debate().setEnabled(true);
                     break;
                 case FINAL:
-                    getForm().getRadio_free_debate().setEnabled(false);
+                    getForm().getBtn_free_debate().setEnabled(false);
                     getForm().getRadio_conclusion_state().setEnabled(true);
                     getForm().getBtn_next_stage().setEnabled(false);
                 default:

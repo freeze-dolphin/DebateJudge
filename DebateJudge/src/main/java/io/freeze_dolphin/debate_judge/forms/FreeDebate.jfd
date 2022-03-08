@@ -1,0 +1,100 @@
+JFDML JFormDesigner: "7.0.5.1.409" Java: "11.0.13" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+			"autoSize": false
+		} ) {
+			name: "this"
+			"font": new java.awt.Font( "微软雅黑", 0, 12 )
+			"defaultCloseOperation": 2
+			"title": "DebateJudge - 自由辩论"
+			"resizable": false
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl_timer_anti"
+				"text": "04 : 00"
+				"font": &Font0 new java.awt.Font( "Lucida Console", 0, 105 )
+				"horizontalAlignment": 0
+				"border": new javax.swing.border.TitledBorder( null, "反方计时", 2, 0, &Font1 new java.awt.Font( "微软雅黑", 0, 24 ), sfield java.awt.Color black )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 533
+				"y": 10
+				"width": 512
+				"height": 240
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl_timer_pros"
+				"text": "04 : 00"
+				"font": #Font0
+				"horizontalAlignment": 0
+				"border": new javax.swing.border.TitledBorder( null, "正方计时", 2, 0, #Font1, sfield java.awt.Color black )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 512
+				"height": 240
+				"x": 15
+				"y": 10
+			} )
+			add( new FormComponent( "javax.swing.JProgressBar" ) {
+				name: "pgb_timer_pros"
+				"maximum": 240
+				"value": 240
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 20
+				"y": 255
+				"width": 505
+				"height": 40
+			} )
+			add( new FormComponent( "javax.swing.JProgressBar" ) {
+				name: "pgb_timer_anti"
+				"maximum": 240
+				"value": 240
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 505
+				"height": 40
+				"x": 535
+				"y": 255
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "sep"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"y": 300
+				"height": 2
+				"width": 1070
+				"x": 0
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "tgb_pros"
+				"text": "计时"
+				"font": &Font2 new java.awt.Font( "微软雅黑", 1, 32 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "tgb_toggle", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 25
+				"y": 308
+				"width": 480
+				"height": 80
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "vsep"
+				"orientation": 1
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"x": 529
+				"height": 500
+			} )
+			add( new FormComponent( "javax.swing.JToggleButton" ) {
+				name: "tgb_anti"
+				"text": "计时"
+				"font": #Font2
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "tgb_toggle", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+				"width": 480
+				"height": 80
+				"x": 555
+				"y": 308
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 10 )
+			"size": new java.awt.Dimension( 1065, 395 )
+		} )
+	}
+}

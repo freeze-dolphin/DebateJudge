@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'DebateJudge'
-include('app')
+include('DebateJudge')
