@@ -58,6 +58,7 @@ public class StageUtil {
                 case THIRD:
                     getForm().getRadio_attack_conclusion().setEnabled(true);
                     getForm().getRadio_attack().setEnabled(true);
+                    getForm().getRadio_test().setEnabled(true);
                     break;
                 case FREE:
                     autoSetEnable(new JComponent[]{
@@ -65,11 +66,13 @@ public class StageUtil {
                             getForm().getRadio_attack_conclusion()
                     }, false);
                     getForm().getBtn_free_debate().setEnabled(true);
+                    getForm().getRadio_test().setEnabled(true);
                     break;
                 case FINAL:
                     getForm().getBtn_free_debate().setEnabled(false);
                     getForm().getRadio_conclusion_state().setEnabled(true);
                     getForm().getBtn_next_stage().setEnabled(false);
+                    getForm().getRadio_test().setEnabled(true);
                 default:
             }
         }

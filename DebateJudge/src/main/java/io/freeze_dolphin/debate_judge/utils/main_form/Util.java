@@ -87,6 +87,7 @@ public class Util {
     }
 
     public static String build_time_exp(int sec) {
+        if (sec <= 0) return "00 : 00";
         int mm = sec / 60 % 60;
         int ss = sec % 60;
         String stm = String.valueOf(mm);
