@@ -15,7 +15,7 @@ new FormModel {
 				"text": "-- : --"
 				"font": new java.awt.Font( "Lucida Console", 0, 112 )
 				"horizontalAlignment": 0
-				"border": new javax.swing.border.TitledBorder( null, "计时器", 4, 0, new java.awt.Font( "Dialog", 1, 20 ), sfield java.awt.Color black )
+				"border": new javax.swing.border.TitledBorder( null, "计时器", 4, 0, &Font0 new java.awt.Font( "微软雅黑", 1, 20 ), sfield java.awt.Color black )
 				"name": "Timer"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
@@ -28,15 +28,15 @@ new FormModel {
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 0
 				"y": 415
-				"width": 1470
+				"width": 1250
 				"height": 15
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lbl_stage"
 				"text": "-"
 				"autoscrolls": true
-				"border": new javax.swing.border.TitledBorder( null, "环节", 4, 0, new java.awt.Font( "Dialog", 1, 20 ), sfield java.awt.Color black )
-				"font": &Font0 new java.awt.Font( "微软雅黑", 0, 112 )
+				"border": new javax.swing.border.TitledBorder( null, "阶段", 4, 0, #Font0, sfield java.awt.Color black )
+				"font": &Font1 new java.awt.Font( "微软雅黑", 0, 112 )
 				"horizontalAlignment": 0
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 5
@@ -46,8 +46,9 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JProgressBar" ) {
 				name: "timer_progress"
-				"maximum": 10000
 				"enabled": false
+				"indeterminate": true
+				"maximum": 0
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 7
 				"y": 162
@@ -57,7 +58,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_get_blammer"
 				"text": "生成先手"
-				"font": &Font1 new java.awt.Font( "微软雅黑", 1, 32 )
+				"font": &Font2 new java.awt.Font( "微软雅黑", 1, 32 )
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_get_blammer", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"width": 240
@@ -68,8 +69,8 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lbl_blammer"
 				"text": "-"
-				"border": new javax.swing.border.TitledBorder( null, "先手", 4, 0, new java.awt.Font( "Dialog", 1, 20 ), sfield java.awt.Color black )
-				"font": #Font0
+				"border": new javax.swing.border.TitledBorder( null, "先手", 4, 0, #Font0, sfield java.awt.Color black )
+				"font": #Font1
 				"horizontalAlignment": 0
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 850
@@ -80,7 +81,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_stage"
 				"text": "开始"
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_stage", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -92,7 +93,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_timer"
 				"text": "计时"
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_timer", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -106,7 +107,7 @@ new FormModel {
 				"text": "陈词"
 				"border": &EtchedBorder0 new javax.swing.border.EtchedBorder( 1, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray )
 				"borderPainted": true
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				"horizontalAlignment": 0
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_state", true ) )
@@ -122,7 +123,7 @@ new FormModel {
 				"text": "攻辩"
 				"border": #EtchedBorder0
 				"borderPainted": true
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				"horizontalAlignment": 0
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_attack", true ) )
@@ -136,7 +137,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_stop_timer"
 				"text": "终止计时"
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_stop_timer", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -150,7 +151,7 @@ new FormModel {
 				"text": "测试"
 				"border": #EtchedBorder0
 				"borderPainted": true
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				"horizontalAlignment": 0
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_test", true ) )
@@ -164,7 +165,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_next_stage"
 				"text": "下一环节"
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_next_stage", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
@@ -176,7 +177,8 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_mute"
 				"text": "禁声"
-				"font": #Font1
+				"font": #Font2
+				"visible": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_mute", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 				"x": 745
@@ -189,7 +191,7 @@ new FormModel {
 				"text": "攻辩小结"
 				"border": #EtchedBorder0
 				"borderPainted": true
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				"horizontalAlignment": 0
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "radio_attack_conclusion", true ) )
@@ -205,7 +207,7 @@ new FormModel {
 				"text": "总结陈词"
 				"border": #EtchedBorder0
 				"borderPainted": true
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				"actionCommand": "总结陈词 (3 min)"
 				"horizontalAlignment": 0
@@ -220,7 +222,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btn_free_debate"
 				"text": "自由辩论"
-				"font": #Font1
+				"font": #Font2
 				"enabled": false
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btn_free_debate", true ) )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {

@@ -8,6 +8,8 @@ import javax.swing.*;
 public class App {
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        System.out.println(System.getenv("DISABLE_SOUND"));
+
         FlatLightLaf.setup();
         UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
         MainForm frame = new MainForm();

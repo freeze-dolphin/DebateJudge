@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.awt.*;
 import java.util.TimerTask;
 
 public class TimerUtil {
@@ -32,24 +33,17 @@ public class TimerUtil {
         @Override
         public void run() {
             if (getForm().getTgb_pros().isSelected()) {
-                getForm().getLbl_timer_pros().setText(
-                        Util.build_time_exp(
-                                Util.get_time_from_time_exp(
-                                        getForm().getLbl_timer_pros().getText()
-                                ) - 1
-                        )
-                );
-                getForm().getPgb_timer_pros().setValue(getForm().getPgb_timer_pros().getValue() - 1);
+                Util.reduce_timer(getForm().getLbl_timer_pros(), getForm().getPgb_timer_pros());
             }
             if (getForm().getTgb_anti().isSelected()) {
-                getForm().getLbl_timer_anti().setText(
-                        Util.build_time_exp(
-                                Util.get_time_from_time_exp(
-                                        getForm().getLbl_timer_anti().getText()
-                                ) - 1
-                        )
-                );
-                getForm().getPgb_timer_anti().setValue(getForm().getPgb_timer_anti().getValue() - 1);
+                Util.reduce_timer(getForm().getLbl_timer_anti(), getForm().getPgb_timer_anti());
+            }
+
+            if (getForm().getLbl_timer_pros().getText().equals("00 : 00")) {
+                getForm().getLbl_timer_pros().setForeground(Color.RED);
+            }
+            if (getForm().getLbl_timer_anti().getText().equals("00 : 00")) {
+                getForm().getLbl_timer_anti().setForeground(Color.RED);
             }
         }
 

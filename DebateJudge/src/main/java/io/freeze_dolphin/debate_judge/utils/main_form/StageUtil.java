@@ -44,9 +44,6 @@ public class StageUtil {
                     getForm().getBtn_stage().setEnabled(false);
                     break;
                 case SECOND:
-                    getForm().getLbl_blammer().setFont(new Font("Dialog", Font.ITALIC, 100));
-                    getForm().getLbl_blammer().setForeground(Color.lightGray);
-
                     autoSetEnable(new JComponent[]{
                             getForm().getBtn_next_stage(),
                             getForm().getRadio_attack(),

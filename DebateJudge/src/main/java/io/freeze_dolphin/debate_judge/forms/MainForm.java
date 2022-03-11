@@ -81,16 +81,21 @@ public class MainForm extends JFrame {
         btn_mute.doClick();
         btn_stop_timer.setEnabled(true);
         btn_timer.setEnabled(false);
+        timer_progress.setIndeterminate(false);
 
         getTmrEva().doForAllRadio((r) -> r.setEnabled(false));
 
         timer_progress.setEnabled(true);
         btn_next_stage.setEnabled(false);
-        this.tmr = Util.startCountingDown(get_current_sec(), this);
+        this.tmr = Util.startCountingDown(get_current_sec(), getLbl_timer(), getTimer_progress());
     }
 
     private void btn_stop_timer(ActionEvent e) {
         timer_progress.setValue(0);
+        timer_progress.setIndeterminate(true);
+
+        getBtn_mute().doClick();
+        getLbl_timer().setForeground(Color.BLACK);
 
         getStgEva().proceedStage(getCurrentStage());
 
@@ -190,26 +195,27 @@ public class MainForm extends JFrame {
         lbl_timer.setFont(new Font("Lucida Console", Font.PLAIN, 112));
         lbl_timer.setHorizontalAlignment(SwingConstants.CENTER);
         lbl_timer.setBorder(new TitledBorder(null, "\u8ba1\u65f6\u5668", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
-            new Font("Dialog", Font.BOLD, 20), Color.black));
+            new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 20), Color.black));
         lbl_timer.setName("Timer");
         contentPane.add(lbl_timer);
         lbl_timer.setBounds(0, 0, 1235, 155);
         contentPane.add(sep);
-        sep.setBounds(0, 415, 1470, 15);
+        sep.setBounds(0, 415, 1250, 15);
 
         //---- lbl_stage ----
         lbl_stage.setText("-");
         lbl_stage.setAutoscrolls(true);
-        lbl_stage.setBorder(new TitledBorder(null, "\u73af\u8282", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
-            new Font("Dialog", Font.BOLD, 20), Color.black));
+        lbl_stage.setBorder(new TitledBorder(null, "\u9636\u6bb5", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
+            new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 20), Color.black));
         lbl_stage.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 112));
         lbl_stage.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lbl_stage);
         lbl_stage.setBounds(5, 210, 840, 198);
 
         //---- timer_progress ----
-        timer_progress.setMaximum(10000);
         timer_progress.setEnabled(false);
+        timer_progress.setIndeterminate(true);
+        timer_progress.setMaximum(0);
         contentPane.add(timer_progress);
         timer_progress.setBounds(7, 162, 1223, 45);
 
@@ -223,7 +229,7 @@ public class MainForm extends JFrame {
         //---- lbl_blammer ----
         lbl_blammer.setText("-");
         lbl_blammer.setBorder(new TitledBorder(null, "\u5148\u624b", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION,
-            new Font("Dialog", Font.BOLD, 20), Color.black));
+            new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 20), Color.black));
         lbl_blammer.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, 112));
         lbl_blammer.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lbl_blammer);
@@ -315,6 +321,7 @@ public class MainForm extends JFrame {
         //---- btn_mute ----
         btn_mute.setText("\u7981\u58f0");
         btn_mute.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
+        btn_mute.setVisible(false);
         btn_mute.addActionListener(e -> btn_mute(e));
         contentPane.add(btn_mute);
         btn_mute.setBounds(745, 425, 240, 60);

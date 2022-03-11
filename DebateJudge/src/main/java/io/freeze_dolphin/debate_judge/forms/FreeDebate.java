@@ -27,8 +27,12 @@ public class FreeDebate extends JFrame {
         getTmr().start();
     }
 
-    private void tgb_toggle(ActionEvent e) {
+    private void tgb_pros(ActionEvent e) {
+        pgb_timer_pros.setIndeterminate(false);
+    }
 
+    private void tgb_anti(ActionEvent e) {
+        pgb_timer_anti.setIndeterminate(false);
     }
 
     @SuppressWarnings("Convert2MethodRef")
@@ -73,12 +77,14 @@ public class FreeDebate extends JFrame {
         //---- pgb_timer_pros ----
         pgb_timer_pros.setMaximum(240);
         pgb_timer_pros.setValue(240);
+        pgb_timer_pros.setIndeterminate(true);
         contentPane.add(pgb_timer_pros);
         pgb_timer_pros.setBounds(20, 255, 505, 40);
 
         //---- pgb_timer_anti ----
         pgb_timer_anti.setMaximum(240);
         pgb_timer_anti.setValue(240);
+        pgb_timer_anti.setIndeterminate(true);
         contentPane.add(pgb_timer_anti);
         pgb_timer_anti.setBounds(535, 255, 505, 40);
         contentPane.add(sep);
@@ -87,7 +93,7 @@ public class FreeDebate extends JFrame {
         //---- tgb_pros ----
         tgb_pros.setText("\u8ba1\u65f6");
         tgb_pros.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
-        tgb_pros.addActionListener(e -> tgb_toggle(e));
+        tgb_pros.addActionListener(e -> tgb_pros(e));
         contentPane.add(tgb_pros);
         tgb_pros.setBounds(25, 308, 480, 80);
 
@@ -99,7 +105,7 @@ public class FreeDebate extends JFrame {
         //---- tgb_anti ----
         tgb_anti.setText("\u8ba1\u65f6");
         tgb_anti.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.BOLD, 32));
-        tgb_anti.addActionListener(e -> tgb_toggle(e));
+        tgb_anti.addActionListener(e -> tgb_anti(e));
         contentPane.add(tgb_anti);
         tgb_anti.setBounds(555, 308, 480, 80);
 

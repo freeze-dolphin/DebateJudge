@@ -8,7 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.Timer;
 import java.util.*;
 
 public class Util {
@@ -44,38 +47,68 @@ public class Util {
         }
     }
 
-    public static java.util.Timer startCountingDown(int sec, MainForm form) {
+    public static void reduce_timer_lbl(JLabel lbl) {
+        lbl.setText(
+                build_time_exp(
+                        get_time_from_time_exp(
+                                lbl.getText()
+                        ) - 1
+                )
+        );
+    }
+
+    public static void reduce_timer_prog(JProgressBar jpb) {
+        if (jpb.isIndeterminate()) jpb.setIndeterminate(false);
+
+        jpb.setValue(jpb.getValue() - 1);
+    }
+
+    public static void reduce_timer(JLabel lbl, JProgressBar jpb) {
+        reduce_timer(lbl, jpb, -1, false);
+    }
+
+    public static boolean reduce_timer(JLabel lbl, JProgressBar jpb, int warnSec, boolean flash) {
+        reduce_timer_lbl(lbl);
+        reduce_timer_prog(jpb);
+
+        if (warnSec > 0) {
+            int remain = get_time_from_time_exp(lbl.getText());
+
+            if (remain == 0) {
+                playSound(Sound.TIME_UP);
+                return true;
+            } else if (remain <= warnSec) {
+                playSound(Sound.TIDA);
+                lbl.setForeground(remain % 2 == 0 ? Color.BLACK : Color.RED);
+            }
+
+        }
+
+        return false;
+    }
+
+    public static java.util.Timer startCountingDown(int sec, JLabel lbl, JProgressBar jpb) {
         java.util.Timer tmr = new Timer();
-        form.getTimer_progress().setMaximum(1000000);
-        tmr.schedule(new CTimerTask(sec, sec, form), 0, 250);
+        System.out.println(sec);
+        jpb.setMaximum(sec);
+        jpb.setValue(sec);
+        lbl.setText(build_time_exp(sec));
+        tmr.schedule(new CTimerTask(lbl, jpb), 0, 1000);
         return tmr;
     }
 
     @AllArgsConstructor
+    @Getter
     private static class CTimerTask extends TimerTask {
 
-        private double sec;
-        private final double origSec;
-        private final MainForm form;
+        private final JLabel lbl;
+        private final JProgressBar jpb;
 
         @Override
         public void run() {
-            form.getLbl_timer().setText(build_time_exp((int) sec));
-            if (sec <= 30 && (double) ((int) sec) == sec) {
-                playSound(Sound.TIDA);
-                form.getLbl_timer().setForeground(new Color(sec % 2 == 0 ? 0 : 255, 0, 0));
-            }
-            int v = (int) (sec / origSec * 1000000);
-            form.getTimer_progress().setValue(v);
-            if (sec == 0) {
-                System.out.println("Timer Ended.");
-                form.getBtn_stop_timer().doClick();
-                form.getTimer_progress().setValue(0);
-                playSound(Sound.TIME_UP);
-                this.cancel();
-                return;
-            }
-            this.sec -= 0.25;
+
+            if (reduce_timer(getLbl(), getJpb(), 30, true)) this.cancel();
+
         }
     }
 
@@ -117,6 +150,12 @@ public class Util {
     public static java.util.List<Player> plrs = new ArrayList<>();
 
     public static void playSound(Sound snd) {
+
+        if (System.getenv().containsKey("DISABLE_SOUND")) {
+            System.out.println("Played sound: " + snd.name());
+            return;
+        }
+
         try {
             Player plr = new Player(Objects.requireNonNull(App.class.getClassLoader().getResourceAsStream(snd.snd)));
             plrs.add(plr);
